@@ -1,0 +1,54 @@
+asientos_disponibles = list(range(1, 11))
+pasajes_vendidos = {}
+
+def mostrar_asientos():
+    print("\nAsientos disponibles:")
+    if asientos_disponibles:
+        print(asientos_disponibles)
+    else:
+        print("No hay asientos disponibles.")
+
+def vender_pasaje():
+    rut = input("Ingrese su RUT (sin puntos ni guion): ")
+    if rut in pasajes_vendidos:
+        print("Ya ha comprado un pasaje. Solo se permite uno por persona.")
+        return
+
+    mostrar_asientos()
+    try:
+        asiento = int(input("Ingrese el número de asiento que desea comprar: "))
+    except ValueError:
+        print("Error: Debe ingresar un número válido.")
+        return
+
+    if asiento in asientos_disponibles:
+        pasajes_vendidos[rut] = asiento
+        asientos_disponibles.remove(asiento)
+        print(f"Pasaje vendido exitosamente. Asiento {asiento} asignado a RUT {rut}.")
+    else:
+        print("Asiento no disponible o inválido.")
+
+def menu():
+    while True:
+        print("\n--- Menú PasajeBus ---")
+        print("1. Ver asientos disponibles")
+        print("2. Comprar pasaje")
+        print("3. Ver pasajes vendidos")
+        print("4. Salir")
+        opcion = input("Seleccione una opción (1-4): ")
+
+        if opcion == "1":
+            mostrar_asientos()
+        elif opcion == "2":
+            vender_pasaje()
+        elif opcion == "3":
+            print("\nPasajes vendidos:")
+            for rut, asiento in pasajes_vendidos.items():
+                print(f"RUT: {rut} - Asiento: {asiento}")
+        elif opcion == "4":
+            print("Gracias por usar PasajeBus. ¡Buen viaje!")
+            break
+        else:
+            print("Opción no válida.")
+
+menu()
