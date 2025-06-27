@@ -1,3 +1,5 @@
+#Profesor si lee esto si no encuentra donde subimos nuestras partes estan subidas en brands!
+
 asientos_disponibles = list(range(1, 11))
 pasajes_vendidos = {}
 
